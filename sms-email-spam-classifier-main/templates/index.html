@@ -1,0 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email/SMS Spam Classifier</title>
+</head>
+<body>
+    <h1>Email/SMS Spam Classifier</h1>
+    <form id="spamForm">
+        <label for="input_sms">Enter the message:</label><br><br>
+        <textarea id="input_sms" name="input_sms" rows="10" cols="50"></textarea><br><br>
+        <button type="submit">Predict</button>
+    </form>
+    <h2 id="result">Prediction: </h2>
+
+    <script>
+        document.getElementById('spamForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const input_sms = document.getElementById('input_sms').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'input_sms': input_sms
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = 'Prediction: ' + data.result;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email/SMS Spam Classifier</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            background-color: gray;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        button {
+            background-color: black;
+            color: white;
+            border: 2px solid red;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        button:hover {
+            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        }
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Email/SMS Spam Classifier</h1>
+        <form id="spamForm">
+            <label for="input_sms">Enter the message:</label><br><br>
+            <textarea id="input_sms" name="input_sms" rows="10" cols="50"></textarea><br><br>
+            <button type="submit">Predict</button>
+        </form>
+        <h2 id="result">Prediction: </h2>
+    </div>
+
+    <script>
+        document.getElementById('spamForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const input_sms = document.getElementById('input_sms').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'input_sms': input_sms
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = 'Prediction: ' + data.result;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
